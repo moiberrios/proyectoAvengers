@@ -53,7 +53,7 @@ ALTER TABLE `heroeVillanoEnfrentados` (
 );
 
 ALTER TABLE `historial` (
-  add constraint fk_medio FOREIGN KEY (`medID`) REFERENCES `medio`(`medID`)
+  add constraint fk_medio FOREIGN KEY (`medID`) REFERENCES `medio`(`medID`),
   add constraint fk_perfil FOREIGN KEY (`perfilID`) REFERENCES `perfil`(`perfilID`),
   add constraint fk_perfil_usuemail FOREIGN KEY ( `usuEmail`) REFERENCES `perfil`(`usuEmail`)
 );
@@ -65,3 +65,59 @@ ALTER TABLE `historial` (
 --   add CONSTRAINT CHK_LUGAR CHECK( `lugarTipo`	IN('Continente' , 'Pais' , 'Ciudad' , 'Avenida' , 'Calle' , 'Edificio' , 'Apartamento' , 'Avenida'))
 -- );
 
+ALTER TABLE `medPais` (
+  add constraint fk_lugar FOREIGN KEY (`lugar_id`) REFERENCES `lugar`(`lugarID`),
+  add constraint fk_medio FOREIGN KEY (`med_id`) REFERENCES `medio`(`medID`)
+);
+
+ALTER TABLE `medVidPlatf` (
+  add constraint fk_medVidjID FOREIGN KEY (`medVid_id`) REFERENCES `medVideojuego`(`medVidjID`),
+  add constraint fk_plataforma FOREIGN KEY (`platf_id`) REFERENCES `plataforma`(`platfID`)
+);
+  
+ALTER TABLE `miLista` (
+  add constraint fk_medio FOREIGN KEY (`med_id`) REFERENCES `medio`(`medID`),
+  add constraint fk_perfil FOREIGN KEY (`perfil_id`) REFERENCES `perfil`(`perfilID`),
+  add constraint fk_perfil_usuemail FOREIGN KEY (`usuEmail_id`) REFERENCES `perfil`(`usuEmail`)
+);
+
+ALTER TABLE `objeto` (
+ add FOREIGN KEY (`objetoTipoFK`) REFERENCES `tipoObjeto`(`tipoObjetoID`)
+);
+
+ALTER TABLE `orgMed` (
+ add constraint fk_organizacion FOREIGN KEY (`org_id`) REFERENCES `organizacion`(`orgID`),
+ add constraint fk_medio FOREIGN KEY (`med_id`) REFERENCES `medio`(`medID`)
+);
+
+ALTER TABLE `organizacion` (
+  add constraint fk_personaje FOREIGN KEY (`orgLiderMasConocido`) REFERENCES `personaje`(`personajeID`)
+);
+
+ALTER TABLE `perCargOrg` (
+  add constraint fk_organizacion FOREIGN KEY (`org_id`) REFERENCES `organizacion`(`orgID`),
+  add constraint fk_personaje FOREIGN KEY (`personaje_id`) REFERENCES `personaje`(`personajeID`),
+  add constraint fk_cargo FOREIGN KEY (`cargo_id`) REFERENCES `cargo`(`cargoID`)
+);  
+  
+ALTER TABLE `perMed` (
+  add constraint fk_Personaje FOREIGN KEY (`med_id`) REFERENCES `personaje`(`personajeID`),
+  add constraint fk_medio FOREIGN KEY ( `med_id`) REFERENCES `medio`(`medID`)
+);
+
+ALTER TABLE `perfil` (
+  add CONSTRAINT fK_usuario FOREIGN KEY (`usuEmail_id`) REFERENCES `usuario`(`usuEmail`)
+);
+
+ALTER TABLE `persCivil` (
+  add constraint  fk_personaje FOREIGN KEY (`id_personaje`) REFERENCES `personaje`(`personajeID`)
+);
+
+ALTER TABLE `persCreador` (
+  add FOREIGN KEY (`creadorID_fk`) REFERENCES `creador`(`creadorID`),
+  add FOREIGN KEY (`personajeID_fk`) REFERENCES `personaje`(`personajeID`)
+);
+ 
+ALTER TABLE `perfil` (
+  constraint fk_personaje FOREIGN KEY (`personaje_id`) REFERENCES `personaje`(`personajeID`),
+  constraint fk_nacionalidad FOREIGN KEY (`nacionalidad_id`) REFERENCES `nacionalidad`(`nacionalidadID`)

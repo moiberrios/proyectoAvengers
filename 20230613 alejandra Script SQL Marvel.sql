@@ -11,18 +11,6 @@ CREATE TABLE `tipoObjeto` (
   PRIMARY KEY (`tipoObjetoID`)
 );
 
-CREATE TABLE `objeto` (
-  `objetoID` int auto_increment,
-  `objetoNombre` varchar(60),
-  `objetoMaterialFabricacion` varchar(60),
-  `objetoTipoFK` int,
-  `objetoDescripcion` varchar(60),
-  PRIMARY KEY (`objetoID`),
-  FOREIGN KEY (`objetoTipoFK`) REFERENCES `tipoObjeto`(`tipoObjetoID`)
-);
-
-
-
 CREATE TABLE `personaje` (
   `personajeID` int auto_increment,
   `perNombre1` varchar(60),
@@ -43,15 +31,6 @@ CREATE TABLE `personaje` (
   CONSTRAINT CHK_MAR_PERS CHECK (`perGenero` IN('Soltero' , 'Soltera' , 'Casado',
   'Casada', 'Viudo' , 'Viuda' ,'Separado' , 'Separada' , 'Divorciado' , 'Divorciada'))
 );
-
-CREATE TABLE `persCreador` (
-  `personajeID_fk` int,
-  `creadorID_fk` int,
-  FOREIGN KEY (`creadorID_fk`) REFERENCES `creador`(`creadorID`),
-  FOREIGN KEY (`personajeID_fk`) REFERENCES `personaje`(`personajeID`)
- 
-);
-
 
 CREATE TABLE `usuGal` (
   `fk_galID` int,
@@ -74,31 +53,12 @@ CREATE TABLE `persVillano` (
   constraint  fk_personaje FOREIGN KEY (`id_personaje`) REFERENCES `personaje`(`personajeID`)
 );
 
-CREATE TABLE `persCivil` (
-  `persCivilD` int auto_increment,
-  `persCivilNombre` varchar(60),
-	 `id_personaje` int not null,
-  PRIMARY KEY (`persCivilD`),
-  constraint  fk_personaje FOREIGN KEY (`id_personaje`) REFERENCES `personaje`(`personajeID`)
-);
-
 CREATE TABLE `persHeroe` (
   `persHeroeID` int auto_increment,
   `superHeroeNombre` varchar(60),
   `superHeroeLogoTipo` tinyblob,
   `superHeroeNombreArchienemigo` int,
   PRIMARY KEY (`persHeroeID`)
-);
-
-
-CREATE TABLE `medSerie` (
-  `medSerID` int auto_increment,
-  `medSerCreador` int,
-  `medSerTotEps` int,
-  `medSerCanalTrans` varchar(60),
-  `medSerTipo` VARCHAR(20),
-  PRIMARY KEY (`medSerID`),
-	CONSTRAINT CHK_MED_SER_TIPO CHECK( `medSerTipo`IN( 'Animado' , 'Liveaction' ,'Caricatura'))
 );
 
 CREATE TABLE `usuario` (
@@ -133,56 +93,7 @@ CREATE TABLE `usuTarj` (
 
 
 
-CREATE TABLE `medio` (
-  `medID` int auto_increment,
-  `medTitulo` varchar(60),
-  `medFechEstreno` date,
-  `companniaCreadProdID` int,
-  `medSinopsis` varchar(60),
-  `medPelicula` int,
-  `medSerie` int,
-  `medVideojuego` int,
-  `medComic` int,
-  PRIMARY KEY (`medID`)
-);
 
-CREATE TABLE `perfil` (
-  `usuEmail_id` varchar(60),
-  `perfilID` int auto_increment,
-  `perfilNombre` varchar(60),
-  `perfilIdiomaPref` varchar(60),
-  `perfilEmail` varchar(60),
-  PRIMARY KEY (`perfilID`),
-  CONSTRAINT fK_usuario FOREIGN KEY (`usuEmail_id`) REFERENCES `usuario`(`usuEmail`),
-	
-);
-
-CREATE TABLE `miLista` (
-  `usuEmail_id` varchar(60),
-  `perfil_id` int,
-  `med_id` int,
-  constraint fk_medio FOREIGN KEY (`med_id`) REFERENCES `medio`(`medID`),
-  constraint fk_perfil FOREIGN KEY (`perfil_id`) REFERENCES `perfil`(`perfilID`),
-  constraint fk_perfil_usuemail FOREIGN KEY (`usuEmail_id`) REFERENCES `perfil`(`usuEmail`),
-  KEY `PK FK` (`usuEmail`, `perfilID`, `medID`),
-	PRIMARY KEY(`usuEmail`),
-  PRIMARY KEY(`perfilID`),
-	 PRIMARY KEY(`medID`)
-	
-	
-);
-
-CREATE TABLE `medPelicula` (
-  `medPelID` int auto_increment,
-  `medPelDirectorCI` int,
-  `medPelDuracion` time,
-  `medPelTipo` VARCHAR(20),
-  `medPelCostProd` numeric(10,2),
-  `medPelGananc` numeric(10,2),
-  `medPelDistrib` int,
-  PRIMARY KEY (`medPelID`),
-	CONSTRAINT CHK_MED_PEL_TIPO CHECK(`medPelTipo`IN('Animada' , 'Liveaction' , ' Caricatura'))
-);
 
 CREATE TABLE `medPelPerdida` (
   `medPel_id` int,
@@ -192,36 +103,6 @@ CREATE TABLE `medPelPerdida` (
 	PRIMARY KEY(`numero`)
 );
 
-CREATE TABLE `organizacion` (
-  `orgID` int auto_increment,
-  `orgNombre` varchar(60),
-  `orgEslogan` varchar(60),
-  `orgLiderMasConocido` varchar(60),
-  `orgTipoOrg` VARCHAR(20),
-  `orgObjetivoPpal` varchar(60),
-  `orgLugarCreacion` int,
-  `orgFundador` int,
-  `orgPrimerAparComics` int,
-  PRIMARY KEY (`orgID`),
-  constraint fk_personaje FOREIGN KEY (`orgLiderMasConocido`) REFERENCES `personaje`(`personajeID`),
-	CONSTRAINT CHK_ORG_TIPO_ORG CHECK( `orgTipoOrg`IN( 'Protagonista' , 'Antogonistan' , 'Secundaria'))
-);
-
-CREATE TABLE `orgMed` (
-  `org_id` int,
-  `med_id` int,
-  `fecha` date,
-  `orgMedTipo` varchar(20),
-  `orgMedEdoFinal` varchar(20),
-  PRIMARY KEY (`fecha`),
-  constraint fk_organizacion FOREIGN KEY (`org_id`) REFERENCES `organizacion`(`orgID`),
-  constraint fk_medio FOREIGN KEY (`med_id`) REFERENCES `medio`(`medID`),
-  CONSTRAINT CHK_ORG_MED_TIPO CHECK(`orgMedTipo`IN('Protagonista' , 'Enemiga' , 'Secundaria')),
-  CONSTRAINT CHK_ORG_MED_FINAL CHECK(`orgMedEdoFinal`IN('Protagonista' , 'Enemiga' , 'Secundaria'))
-    
-);
-
-
 CREATE TABLE `nacionalidad` (
   `nacionalidadID` int auto_increment,
   `nacionalidadNombre` varchar(60),
@@ -229,26 +110,11 @@ CREATE TABLE `nacionalidad` (
   PRIMARY KEY (`nacionalidadID`)
 );
 
-CREATE TABLE `persNacion` (
-  `personaje_id` int,
-  `nacionalidad_id` int,
-  constraint fk_personaje FOREIGN KEY (`personaje_id`) REFERENCES `personaje`(`personajeID`),
-  constraint fk_nacionalidad FOREIGN KEY (`nacionalidad_id`) REFERENCES `nacionalidad`(`nacionalidadID`)
-  
-);
-
-
 CREATE TABLE `persObjeto` (
   `personaje_id` int,
   `objeto_id` int,
   constraint fk_objeto FOREIGN KEY (`objeto_id`) REFERENCES `objeto`(`objetoID`),
   constraint fk_personaje FOREIGN KEY (`personaje_id`) REFERENCES `personaje`(`personajeID`),
-);
-
-CREATE TABLE `ocupacion` (
-  `ocupacionID` int auto_increment,
-  `ocupacionNombre` varchar(60),
-  PRIMARY KEY (`ocupacionID`)
 );
 
 CREATE TABLE `rating ` (
@@ -261,15 +127,6 @@ CREATE TABLE `rating ` (
   constraint fk_medio FOREIGN KEY (`med_id`) REFERENCES `medio`(`medID`),
   CONSTRAINT CHK_RATING_PUNTAJE CHECK( `ratingPuntaje` BETWEEN 1 AND 5)
 );
-
-CREATE TABLE `medVideojuego` (
-  `medVidjID` int auto_increment,
-  `medVidjTipJuego` varchar(20),
-  `medVidjCompPubl` int,
-  PRIMARY KEY (`medVidjID`),
-  CONSTRAINT CHK_MED_VIDJ_TIP_JUEGO CHECK(`medVidjTipJuego`IN( 'Accion' , 'Aventura' , 'Arcade' ,'Estrategia' , 'Simulacion' , 'Musical'))
-);
-
 
 CREATE TABLE `Ganancia` (
   `gananciaNumero` int,
@@ -295,27 +152,10 @@ CREATE TABLE `persPoder` (
   CONSTRAINT CHK_OBTENCION_PODER CHECK( `obtencionPoder`IN('Natural' , 'Artificial'))
 );
 
-
-CREATE TABLE `medPelGananc` (
-  `medPelID` int,
-  `gananciaNumero` int,
-  Primary key(`medPelID`),
-  Primary key(`gananciaNumero`)
-);
-
 CREATE TABLE `plataforma` (
   `platfID` int auto_increment,
   `platfNombre` varchar(60),
   PRIMARY KEY (`platfID`)
-);
-
-CREATE TABLE `medPais` (
-  `med_id` int,
-  `lugar_id` int,
-  constraint fk_lugar FOREIGN KEY (`lugar_id`) REFERENCES `lugar`(`lugarID`),
-  constraint fk_medio FOREIGN KEY (`med_id`) REFERENCES `medio`(`medID`),
- 
-  
 );
 
 
@@ -340,14 +180,6 @@ CREATE TABLE `sede` (
   PRIMARY KEY (`sedeID`),
   constraint fk_organizacion FOREIGN KEY (`org_id`) REFERENCES `organizacion`(`orgID`),
    CONSTRAINT CHK_SEDE_TIPO_EDIFICIO CHECK( `sedeTipoEdificacion`IN('Mansion' ,'Torre' , 'Cueva' , 'Casa' , 'Apartamento'))
-);
-
-CREATE TABLE `medVidPlatf` (
-  `medVid_id` int,
-  `platf_id` int,
-  constraint fk_medVidjID FOREIGN KEY (`medVid_id`) REFERENCES `medVideojuego`(`medVidjID`),
-  constraint fk_plataforma FOREIGN KEY (`platf_id`) REFERENCES `plataforma`(`platfID`)
-  
 );
 
 CREATE TABLE `persOcupacion` (
@@ -384,25 +216,3 @@ CREATE TABLE `recomendacion` (
   
 );
 
-CREATE TABLE `perCargOrg` (
-  `personaje_id` int,
-  `cargo_id` int,
-  `org_id` int,
-  constraint fk_organizacion FOREIGN KEY (`org_id`) REFERENCES `organizacion`(`orgID`),
-  constraint fk_personaje FOREIGN KEY (`personaje_id`) REFERENCES `personaje`(`personajeID`),
-  constraint fk_cargo FOREIGN KEY (`cargo_id`) REFERENCES `cargo`(`cargoID`),
-  
-  
-);
-
-CREATE TABLE `perMed` (
-  `med_id` int,
-  `perMedTipo` varchar(20),
-  `actorCI` int,
-  `perMedTipoInterpret` varchar(20),
-  constraint fk_Personaje FOREIGN KEY (`med_id`) REFERENCES `personaje`(`personajeID`),
-  constraint fk_medio FOREIGN KEY ( `med_id`) REFERENCES `medio`(`medID`),
-   CONSTRAINT CHK_PER_MED_TIPO CHECK(  `perMedTipo`IN('Protagonista' , 'Enemiga' , 'Secundaria')),
-   CONSTRAINT CHK_PER_MED_TIPO_INTERPRET CHECK(  `perMedTipoInterpret`IN('Interprete' , 'Voz'))
-   
-);

@@ -160,4 +160,154 @@ CREATE TABLE `medComic` (
   PRIMARY KEY (`medComID`)
 );
 
+CREATE TABLE `medPais` (
+  `med_id` int,
+  `lugar_id` int,
+  primary key (`med_id`, `lugar_id`)
+);
 
+-- CREATE TABLE `medPelGananc` (
+--   `medPelID` int,
+--   `gananciaNumero` int,
+--   Primary key(`medPelID`),
+--   Primary key(`gananciaNumero`)
+-- );
+
+CREATE TABLE `medPelicula` (
+  `medPelID` int auto_increment,
+  `medPelDirectorCI` int,
+  `medPelDuracion` time,
+  `medPelTipo` VARCHAR(20),
+  `medPelCostProd` numeric(10,2),
+  `medPelGananc` numeric(10,2),
+  `medPelDistrib` int,
+  PRIMARY KEY (`medPelID`),
+	CONSTRAINT CHK_MED_PEL_TIPO CHECK(`medPelTipo`IN('Animada' , 'Liveaction' , ' Caricatura'))
+);
+
+CREATE TABLE `medSerie` (
+  `medSerID` int auto_increment,
+  `medSerCreador` int,
+  `medSerTotEps` int,
+  `medSerCanalTrans` varchar(60),
+  `medSerTipo` VARCHAR(20),
+  PRIMARY KEY (`medSerID`),
+	CONSTRAINT CHK_MED_SER_TIPO CHECK( `medSerTipo`IN( 'Animado' , 'Liveaction' ,'Caricatura'))
+);
+
+CREATE TABLE `medVidPlatf` (
+  `medVid_id` int,
+  `medVidTipJuego` varchar(60),
+  `platf_id` int
+);
+
+CREATE TABLE `medVideojuego` (
+  `medVidjID` int auto_increment,
+  `medVidjTipJuego` varchar(20),
+  `medVidjCompPubl` int,
+  PRIMARY KEY (`medVidjID`),
+  CONSTRAINT CHK_MED_VIDJ_TIP_JUEGO CHECK(`medVidjTipJuego`IN( 'Accion' , 'Aventura' , 'Arcade' ,'Estrategia' , 'Simulacion' , 'Musical'))
+);
+
+CREATE TABLE `medio` (
+  `medID` int auto_increment,
+  `medTitulo` varchar(60),
+  `medFechEstreno` date,
+  `companniaCreadProdID` int,
+  `medSinopsis` varchar(60),
+  `medPelicula` int,
+  `medSerie` int,
+  `medVideojuego` int,
+  `medComic` int,
+  PRIMARY KEY (`medID`)
+);
+
+CREATE TABLE `miLista` (
+  `usuEmail_id` varchar(60),
+  `perfil_id` int,
+  `med_id` int,
+  KEY `PK FK` (`usuEmail`, `perfilID`, `medID`),
+	PRIMARY KEY(`usuEmail`),
+  PRIMARY KEY(`perfilID`),
+  PRIMARY KEY(`medID`)
+);
+
+CREATE TABLE `objeto` (
+  `objetoID` int auto_increment,
+  `objetoNombre` varchar(60),
+  `objetoMaterialFabricacion` varchar(60),
+  `objetoTipoFK` int,
+  `objetoDescripcion` varchar(60),
+  PRIMARY KEY (`objetoID`),
+);
+
+CREATE TABLE `ocupacion` (
+  `ocupacionID` int auto_increment,
+  `ocupacionNombre` varchar(60),
+  PRIMARY KEY (`ocupacionID`)
+);
+
+CREATE TABLE `orgMed` (
+  `org_id` int,
+  `med_id` int,
+  `fecha` date,
+  `orgMedTipo` varchar(20),
+  `orgMedEdoFinal` varchar(20),
+  PRIMARY KEY (`fecha`),
+  CONSTRAINT CHK_ORG_MED_TIPO CHECK(`orgMedTipo`IN('Protagonista' , 'Enemiga' , 'Secundaria')),
+  CONSTRAINT CHK_ORG_MED_FINAL CHECK(`orgMedEdoFinal`IN('Protagonista' , 'Enemiga' , 'Secundaria'))
+);
+
+CREATE TABLE `organizacion` (
+  `orgID` int auto_increment,
+  `orgNombre` varchar(60),
+  `orgEslogan` varchar(60),
+  `orgLiderMasConocido` varchar(60),
+  `orgTipoOrg` VARCHAR(20),
+  `orgObjetivoPpal` varchar(60),
+  `orgLugarCreacion` int,
+  `orgFundador` int,
+  `orgPrimerAparComics` int,
+  PRIMARY KEY (`orgID`)
+);
+
+CREATE TABLE `perCargOrg` (
+  `personaje_id` int,
+  `cargo_id` int,
+  `org_id` int
+);
+
+CREATE TABLE `perMed` (
+  `med_id` int,
+  `perMedTipo` varchar(20),
+  `actorCI` int,
+  `perMedTipoInterpret` varchar(20),
+   CONSTRAINT CHK_PER_MED_TIPO CHECK(  `perMedTipo`IN('Protagonista' , 'Enemiga' , 'Secundaria')),
+   CONSTRAINT CHK_PER_MED_TIPO_INTERPRET CHECK(  `perMedTipoInterpret`IN('Interprete' , 'Voz'))
+);
+
+CREATE TABLE `perfil` (
+  `usuEmail_id` varchar(60),
+  `perfilID` int auto_increment,
+  `perfilNombre` varchar(60),
+  `perfilIdiomaPref` varchar(60),
+  `perfilEmail` varchar(60),
+  PRIMARY KEY (`perfilID`)
+);
+
+CREATE TABLE `persCivil` (
+  `persCivilD` int auto_increment,
+  `persCivilNombre` varchar(60),
+	 `id_personaje` int not null,
+  PRIMARY KEY (`persCivilD`)
+);
+
+CREATE TABLE `persCreador` (
+  `personajeID_fk` int,
+  `creadorID_fk` int
+);
+
+CREATE TABLE `persNacion` (
+  `personaje_id` int,
+  `nacionalidad_id` int
+);
