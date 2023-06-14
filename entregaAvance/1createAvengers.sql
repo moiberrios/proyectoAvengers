@@ -434,8 +434,6 @@ CREATE TABLE `trajeColor` (
   `persHeroe_id` int,
   `colorHEX_id` varchar(60),
   `detalleTrajeColor` varchar(60),
-   constraint fk_persHeroe FOREIGN KEY (`persHeroe_id`) REFERENCES `persHeroe`(`persHeroeID`),
-  constraint fk_color FOREIGN KEY (`colorHEX_id`) REFERENCES `color`(`colorHEX`)
 );
 
 CREATE TABLE `usuDisp` (

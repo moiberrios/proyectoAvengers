@@ -163,6 +163,11 @@ ALTER TABLE `sede` (
   add CONSTRAINT CHK_SEDE_TIPO_EDIFICIO CHECK( `sedeTipoEdificacion`IN('Mansion' ,'Torre' , 'Cueva' , 'Casa' , 'Apartamento'))
 );
 
+ALTER TABLE `trajeColor` (
+   constraint fk_persHeroe FOREIGN KEY (`persHeroe_id`) REFERENCES `persHeroe`(`persHeroeID`),
+  constraint fk_color FOREIGN KEY (`colorHEX_id`) REFERENCES `color`(`colorHEX`)
+);
+
 ALTER TABLE `usuDisp` (
   add constraint fk_dispositivo FOREIGN KEY (`disp_id`) REFERENCES `dispositivo`(`dispID`),
   add constraint fk_usuario FOREIGN KEY (`usuEmail_id`) REFERENCES `usuario`(`usuEmail`)
