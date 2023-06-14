@@ -119,5 +119,56 @@ ALTER TABLE `persCreador` (
 );
  
 ALTER TABLE `perfil` (
-  constraint fk_personaje FOREIGN KEY (`personaje_id`) REFERENCES `personaje`(`personajeID`),
-  constraint fk_nacionalidad FOREIGN KEY (`nacionalidad_id`) REFERENCES `nacionalidad`(`nacionalidadID`)
+  add constraint fk_personaje FOREIGN KEY (`personaje_id`) REFERENCES `personaje`(`personajeID`),
+  add constraint fk_nacionalidad FOREIGN KEY (`nacionalidad_id`) REFERENCES `nacionalidad`(`nacionalidadID`)
+);
+
+ALTER TABLE `persObjeto` (
+  add constraint fk_objeto FOREIGN KEY (`objeto_id`) REFERENCES `objeto`(`objetoID`),
+  add constraint fk_personaje FOREIGN KEY (`personaje_id`) REFERENCES `personaje`(`personajeID`)
+);
+
+-- ALTER TABLE `persOcupacion` (
+--   add constraint fk_ocupacion FOREIGN KEY (`ocupacion_id`) REFERENCES `ocupacion`(`ocupacionID`),
+--   add constraint fk_personaje FOREIGN KEY (`personaje_id`) REFERENCES `personaje`(`personajeID`)
+-- );
+
+ALTER TABLE `persPoder` (
+  add constraint fk_poder FOREIGN KEY (`poder_id`) REFERENCES `poder`(`poderID`),
+  add constraint fk_personaje FOREIGN KEY (`personaje_id`) REFERENCES `personaje`(`personajeID`)
+);
+
+ALTER TABLE `persVillano` (
+  add constraint  fk_personaje FOREIGN KEY (`id_personaje`) REFERENCES `personaje`(`personajeID`)
+);
+
+ALTER TABLE `persOcupacion` (
+  add constraint fk_ocupacion FOREIGN KEY (`ocupacion_id`) REFERENCES `ocupacion`(`ocupacionID`),
+  add constraint fk_personaje FOREIGN KEY (`personaje_id`) REFERENCES `personaje`(`personajeID`)
+);
+
+ALTER TABLE `rating` (
+  add constraint fk_perdil FOREIGN KEY (`perfil_id`) REFERENCES `perfil`(`usuEmail`),
+  add constraint fk_medio FOREIGN KEY (`med_id`) REFERENCES `medio`(`medID`)
+);
+
+ALTER TABLE `recomendacion` (
+  add constraint fk_perfil FOREIGN KEY (`perfil_id`) REFERENCES `perfil`(`perfilID`),
+  add constraint fk_medio FOREIGN KEY (`med_id`) REFERENCES `medio`(`medID`),
+  add constraint fk_perfil FOREIGN KEY (`usuEmail_id`) REFERENCES `perfil`(`usuEmail`)
+);
+
+ALTER TABLE `sede` (
+  add constraint fk_organizacion FOREIGN KEY (`org_id`) REFERENCES `organizacion`(`orgID`),
+  add CONSTRAINT CHK_SEDE_TIPO_EDIFICIO CHECK( `sedeTipoEdificacion`IN('Mansion' ,'Torre' , 'Cueva' , 'Casa' , 'Apartamento'))
+);
+
+ALTER TABLE `usuDisp` (
+  add constraint fk_dispositivo FOREIGN KEY (`disp_id`) REFERENCES `dispositivo`(`dispID`),
+  add constraint fk_usuario FOREIGN KEY (`usuEmail_id`) REFERENCES `usuario`(`usuEmail`)
+);
+
+ALTER TABLE `usuTarj` (
+  add CONSTRAINT fk_Usuario FOREIGN KEY ( `usuEmail_id`) REFERENCES `usuario`(`usuEmail`),
+  add CONSTRAINT fk_tarjeta FOREIGN KEY (`tarjNum_id `) REFERENCES `tarjeta`(`tarjNum`)
+);
