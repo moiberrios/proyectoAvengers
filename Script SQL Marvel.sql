@@ -218,7 +218,6 @@ CREATE TABLE `cargMontSuscrpGan` (
 	PRIMARY KEY(`numTarjt`),
 	PRIMARY KEY(`cargoMontFinMes`),
 	PRIMARY KEY(`cuentaID`)
-
 );
 
 CREATE TABLE `color` (

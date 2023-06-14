@@ -52,14 +52,6 @@ CREATE TABLE `persCreador` (
  
 );
 
-CREATE TABLE `galeria` (
-  `galID` int auto_increment,
-  `galNombre` varchar(60),
-  PRIMARY KEY (`galID`)
-);
-
-
-
 
 CREATE TABLE `usuGal` (
   `fk_galID` int,
@@ -82,14 +74,6 @@ CREATE TABLE `persVillano` (
   constraint  fk_personaje FOREIGN KEY (`id_personaje`) REFERENCES `personaje`(`personajeID`)
 );
 
-
-
-CREATE TABLE `director` (
-  `directorCI` int auto_increment,
-  `directorNombre` int,
-  PRIMARY KEY (`directorCI`)
-);
-
 CREATE TABLE `persCivil` (
   `persCivilD` int auto_increment,
   `persCivilNombre` varchar(60),
@@ -106,16 +90,6 @@ CREATE TABLE `persHeroe` (
   PRIMARY KEY (`persHeroeID`)
 );
 
-CREATE TABLE `heroeVillanoCivil` (
-  `heroeVillanoCivID` int auto_increment,
-  `persHeroeID_fk` int,
-  `persCivilID_fk` int,
-  `persVillanoID_fk` int,
-  PRIMARY KEY (`heroeVillanoCivID`),
-  CONSTRAINT fk_persHeroe FOREIGN KEY (`persHeroeID_fk`) REFERENCES `persHeroe`(`persHeroeID`),
-  CONSTRAINT fk_persVillano FOREIGN KEY (`persCivilID_fk`) REFERENCES `persVillano`(`persVillanoID`),
-  CONSTRAINT fk_persCivil FOREIGN KEY (`persVillanoID_fk`) REFERENCES `persCivil`(`persCivilD`)
-);
 
 CREATE TABLE `medSerie` (
   `medSerID` int auto_increment,
@@ -198,28 +172,6 @@ CREATE TABLE `miLista` (
 	
 );
 
-CREATE TABLE `cuentaMed` (
-  `cuentaID` int,
-  `med_id` int,
-  `modoOffline` boolean,
-  `modoLectura` VARCHAR(20),
-  constraint fk_medio FOREIGN KEY (`med_id`) REFERENCES `medio`(`medID`),
-	PRIMARY KEY(`cuentaID`),
-	CONSTRAINT CHK_MODO_LECTURA CHECK( `modoLectura` IN('Oscuro' , 'lectura' , 'Solar'))
-	
-);
-
-CREATE TABLE `cuenta` (
-  `cuentaID` int auto_increment,
-  `cuentaTipo` VARCHAR(20),
-  `cuentaDescripcMembresia` varchar(60),
-  `cuentaTarifa` numeric(10,2),
-  PRIMARY KEY (`cuentaID`),
-  FOREIGN KEY (`cuentaID`) REFERENCES `cargoMontoSuscripcion`(`cuentaID`),
-  FOREIGN KEY (`cuentaID`) REFERENCES `cuentaMed`(`cuentaID`),
-	CONSTRAINT CHK_CUENTA_TIPO CHECK( `cuentaTipo` IN( 'Gold' OR 'Premium' OR 'VIP'))
-);
-
 CREATE TABLE `medPelicula` (
   `medPelID` int auto_increment,
   `medPelDirectorCI` int,
@@ -269,14 +221,6 @@ CREATE TABLE `orgMed` (
     
 );
 
-CREATE TABLE `heroeVillanoEnfrentados` (
-  `persHeroe_id` int,
-  `persVillano_id` int,
-  constraint fk_persheroe FOREIGN KEY (`persHeroe_id`) REFERENCES `persHeroe`(`persHeroeID`),
-  constraint fk_persvillano FOREIGN KEY (`persVillano_id`) REFERENCES `persVillano`(`persVillanoID`),
-  PRIMARY  KEY(`persHeroeID`),
-  PRIMARY KEY(`persVillanoID`)
-);
 
 CREATE TABLE `nacionalidad` (
   `nacionalidadID` int auto_increment,
@@ -293,26 +237,12 @@ CREATE TABLE `persNacion` (
   
 );
 
-CREATE TABLE `medComic` (
-  `medComID` int auto_increment,
-  `medComNroTomo` int,
-  PRIMARY KEY (`medComID`)
-);
 
 CREATE TABLE `persObjeto` (
   `personaje_id` int,
   `objeto_id` int,
   constraint fk_objeto FOREIGN KEY (`objeto_id`) REFERENCES `objeto`(`objetoID`),
   constraint fk_personaje FOREIGN KEY (`personaje_id`) REFERENCES `personaje`(`personajeID`),
-);
-
-CREATE TABLE `descuento` (
-  `ben_id` int,
-  `cuenta_id` int,
-  `descFechaVenc` date,
-  `descPorc` int,
-  constraint fk_beneficio FOREIGN KEY (`ben_id`) REFERENCES `beneficio`(`benID`),
-  constraint fk_cuenta FOREIGN KEY (`cuenta_id`) REFERENCES `cuenta`(`cuentaID`),
 );
 
 CREATE TABLE `ocupacion` (
@@ -340,18 +270,6 @@ CREATE TABLE `medVideojuego` (
   CONSTRAINT CHK_MED_VIDJ_TIP_JUEGO CHECK(`medVidjTipJuego`IN( 'Accion' , 'Aventura' , 'Arcade' ,'Estrategia' , 'Simulacion' , 'Musical'))
 );
 
-CREATE TABLE `lugar` (
-  `lugarID` int auto_increment,
-  `lugarNombre` varchar(60),
-  `lugarFicticio` boolean,
-  `lugarTipo` VARCHAR(20),
-  `lugar_id` int,
-  PRIMARY KEY (`lugarID`),
-  constraint fk_usuario FOREIGN KEY (`lugar_id`) REFERENCES `usuario`(`usuPais`),
-  constraint fk_lugar FOREIGN KEY (`lugar_id`) REFERENCES `lugar`(`lugarID`),
-  constraint fk_usuario FOREIGN KEY (`lugar_id`) REFERENCES `usuario`(`usuCiudad`),
-  CONSTRAINT CHK_LUGAR CHECK( `lugarTipo`	IN('Continente' , 'Pais' , 'Ciudad' , 'Avenida' , 'Calle' , 'Edificio' , 'Apartamento' , 'Avenida'))
-);
 
 CREATE TABLE `Ganancia` (
   `gananciaNumero` int,
@@ -400,13 +318,6 @@ CREATE TABLE `medPais` (
   
 );
 
-CREATE TABLE `dispositivo` (
-  `dispID` int auto_increment,
-  `dispNombre` varchar(60),
-  `dispTipo` varchar(20),
-  PRIMARY KEY (`dispID`),
-  CONSTRAINT CHK_DISP_TIPO CHECK( `dispTipo` IN('Telefono' , 'Tablet' , 'Portatil' , 'Escritorio')
-);
 
 CREATE TABLE `usuDisp` (
   `usuEmail_id` varchar(60),
@@ -458,13 +369,6 @@ CREATE TABLE `trajeColor` (
   
 );
 
-CREATE TABLE `historial` (
-  `med_id` int,
-  `perfil_id` int,
-  `usuEmail_id` varchar(60),
-  constraint fk_perfil_usuemail FOREIGN KEY ( `perfil_id`) REFERENCES `perfil`(`usuEmail`),
-  constraint fk_perfil FOREIGN KEY (`usuEmail_id`) REFERENCES `perfil`(`perfilID`),
-  constraint fk_medio FOREIGN KEY (`med_id`) REFERENCES `medio`(`medID`),
   
 
 CREATE TABLE `recomendacion` (
