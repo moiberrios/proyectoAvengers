@@ -1,16 +1,3 @@
-INSERT INTO organizacion (orgNombre, orgEslogan, orgLiderMasConocido, orgTipoOrg, orgObjetivoPpal, orgLugarCreacion, orgFundador, orgPrimerAparComics)
-VALUES 
-('SHIELD', 'Proteger al mundo de amenazas sobrenaturales', 'Nick Fury', 'Agencia de espionaje', 'Mantener la paz y la seguridad mundial', 1965, 1, 1965),
-('Liga de la Justicia', 'La justicia siempre prevalecerá!', 'Superman', 'Superhéroes', 'Proteger al mundo de amenazas sobrenaturales', 1960, 1, 1960),
-('X-Men', 'Protegiendo a una humanidad que les teme!', 'Profesor X', 'Superhéroes', 'Promover la coexistencia pacífica entre humanos y mutantes', 1963, 1, 1963),
-('Los Vengadores', '¡Unidos venceremos!', 'Capitán América', 'Superhéroes', 'Proteger al mundo de amenazas sobrenaturales', 1963, 1, 1963),
-('La Liga de la Justicia Oscura', 'Protegiendo al mundo de lo sobrenatural!', 'John Constantine', 'Superhéroes', 'Proteger al mundo de amenazas sobrenaturales', 2011, 1, 2011),
-('Hydra', 'Cortar una cabeza y crecerán dos más en su lugar', 'Barón Strucker', 'Supervillanos', 'Establecer el control global', 1965, 1, 1965),
-('La Hermandad de Mutantes', 'Los mutantes son el futuro!', 'Magneto', 'Supervillanos', 'Establecer la supremacía mutante', 1964, 1, 1964),
-('Los Cuatro Fantásticos', 'Unidos somos invencibles!', 'Mr. Fantástico', 'Superhéroes', 'Explorar el universo y proteger a la Tierra de amenazas extraterrestres', 1961, 1, 1961),
-('La Patrulla-X', 'Protegiendo un mundo que los odia!', 'Cíclope', 'Superhéroes', 'Promover la coexistencia pacífica entre humanos y mutantes', 1963, 1, 1963),
-('Los Inhumanos', 'Unidos somos una fuerza imparable!', 'Rayo Negro', 'Superhéroes', 'Proteger a los Inhumanos de amenazas externas', 1965, 1, 1965);
-
 INSERT INTO personaje (perNombre1, perApellido1, perGenero, perColorPelo, perColorOjos, perEdoMarital, perPrimeraAparicionComic, perFraseMasCelebre, personajeHeroe, personajeVillano, personajeCivil)
 VALUES 
 ('Peter', 'Parker', 'M', 'Café', 'Azul', 'Soltero', 15, '¡Un gran poder conlleva una gran responsabilidad!', 1, 0, 0),
@@ -57,6 +44,19 @@ VALUES
 ('Scarlett', NULL, 'Johansson', NULL),
 ('Daniel', NULL, 'Craig', NULL);
 
+INSERT INTO organizacion (orgNombre, orgEslogan, orgLiderMasConocido, orgTipoOrg, orgObjetivoPpal, orgLugarCreacion, orgFundador, orgPrimerAparComics)
+VALUES 
+('SHIELD', 'Proteger al mundo de amenazas sobrenaturales', 1, 'Agencia de espionaje', 'Mantener la paz y la seguridad mundial', 1965, 1, 1965),
+('Liga de la Justicia', 'La justicia siempre prevalecerá!', 1, 'Superhéroes', 'Proteger al mundo de amenazas sobrenaturales', 1960, 1, 1960),
+('X-Men', 'Protegiendo a una humanidad que les teme!', 1, 'Superhéroes', 'Promover la coexistencia pacífica entre humanos y mutantes', 1963, 1, 1963),
+('Los Vengadores', '¡Unidos venceremos!', 1, 'Superhéroes', 'Proteger al mundo de amenazas sobrenaturales', 1963, 1, 1963),
+('La Liga de la Justicia Oscura', 'Protegiendo al mundo de lo sobrenatural!',1, 'Superhéroes', 'Proteger al mundo de amenazas sobrenaturales', 2011, 1, 2011),
+('Hydra', 'Cortar una cabeza y crecerán dos más en su lugar', 1, 'Supervillanos', 'Establecer el control global', 1965, 1, 1965),
+('La Hermandad de Mutantes', 'Los mutantes son el futuro!', 1, 'Supervillanos', 'Establecer la supremacía mutante', 1964, 1, 1964),
+('Los Cuatro Fantásticos', 'Unidos somos invencibles!', 1, 'Superhéroes', 'Explorar el universo y proteger a la Tierra de amenazas extraterrestres', 1961, 1, 1961),
+('La Patrulla-X', 'Protegiendo un mundo que los odia!', 1, 'Superhéroes', 'Promover la coexistencia pacífica entre humanos y mutantes', 1963, 1, 1963),
+('Los Inhumanos', 'Unidos somos una fuerza imparable!', 1, 'Superhéroes', 'Proteger a los Inhumanos de amenazas externas', 1965, 1, 1965);
+
 INSERT INTO poder (poderNombre, poderDescripcion)
 VALUES 
 ('Superfuerza', 'Capacidad sobrehumana de fuerza física'),
@@ -79,6 +79,29 @@ VALUES
 ('Inmortalidad', 'Incapacidad de morir o envejecer'),
 ('Lanzamiento de rayos', 'Habilidad de lanzar rayos de energía'),
 ('Armadura corporal', 'Habilidad de crear una armadura protectora alrededor del cuerpo');
+
+INSERT INTO tipoObjeto (tipoObjetoNombre)
+VALUES 
+('Mjonir'),
+('soejf'),
+('jsejf'),
+('jsojef'),
+('jsejof'),
+('soeofje'),
+('sjeoef'),
+('sjof'),
+('sief'),
+('seojf'),
+('seojf'),
+('seoja'),
+('sejof'),
+('sjefo'),
+('efjo'),
+('eosf'),
+('eosjfo'),
+('sej2'),
+('isoe'),
+('3j3');
 
 INSERT INTO objeto (objetoNombre, objetoMaterialFabricacion, objetoTipoFK, objetoDescripcion)
 VALUES 
@@ -106,25 +129,25 @@ VALUES
 INSERT INTO persObjeto (personaje_id, objeto_id)
 VALUES 
 (1, 1),
-(1, 2),
-(1, 3),
-(2, 4),
-(2, 5),
-(2, 6),
-(3, 7),
-(3, 8),
-(4, 9),
-(4, 10),
-(5, 11),
-(5, 12),
-(6, 13),
+(83, 2),
+(181, 3),
+(85, 4),
+(9, 5),
+(52, 6),
+(52, 7),
+(52, 8),
+(52, 9),
+(8, 10),
+(8, 11),
+(8, 12),
+(8, 13),
 (7, 14),
 (8, 15),
 (9, 16),
-(10, 17),
-(10, 18),
-(10, 19),
-(10, 20);
+(1, 17),
+(1, 18),
+(1, 19),
+(1, 20);
 
 INSERT INTO persPoder (personaje_id, poder_id, obtencionPoder, personajeHerencia)
 VALUES 
@@ -264,3 +287,37 @@ INSERT INTO usuario (usuEmail, usuNombre1, usuNombre2, usuApell1, usuApell2, usu
 ('user8@example.com', 'Megan', '', 'Taylor', '', '1994-12-25', 'password8', 'megantaylor', 7, 8),
 ('user9@example.com', 'Eric', '', 'Garcia', '', '1987-04-18', 'password9', 'ericgarcia', 8, 9),
 ('user10@example.com', 'Karen', '', 'Brown', '', '1991-06-15', 'password10', 'karenbrown', 9, 10);
+
+INSERT INTO `lugar` (`lugarNombre`, `lugarFicticio`, `lugarTipo`, `lugar_id`)
+VALUES
+('name1', 1, 'type1', 1),
+('name2', 0, 'type2', 2),
+('name3', 1, 'type3', 3),
+('name4', 0, 'type4', 4),
+('name5', 1, 'type5', 5),
+('name6', 0, 'type6', 6),
+('name7', 1, 'type7', 7),
+('name8', 0, 'type8', 8),
+('name9', 1, 'type9', 9),
+('name10', 0, 'type10', 10),
+('name11', 1, 'type11', 11),
+('name12', 0, 'type12', 12),
+('name13', 1, 'type13', 13),
+('name14', 0, 'type14', 14),
+('name15', 1, 'type15', 15),
+('name16', 0, 'type16', 16),
+('name17', 1, 'type17', 17),
+('name18', 0, 'type18', 18),
+('name19', 1, 'type19', 19),
+('name20', 0, 'type20', 20);
+
+create view personajes_peliculas_mas_vistas as 
+select * 
+from perMed pm in (select m.medID
+                    from medio m, rating r 
+                    where medPelicula is not NULL
+                    and m.medID = r.medID
+                    and r.medID IN (select medID
+                                        from rating
+                                        where ratingPuntaje = 5)
+);

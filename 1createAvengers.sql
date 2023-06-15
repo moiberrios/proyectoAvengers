@@ -94,14 +94,14 @@ CREATE TABLE `cuenta` (
   `cuentaTipo` VARCHAR(20),
   `cuentaDescripcMembresia` varchar(60),
   `cuentaTarifa` numeric(10,2),
-  PRIMARY KEY (`cuentaID`),
+  PRIMARY KEY (`cuentaID`)
 );
 
 CREATE TABLE `descuento` (
   `ben_id` int,
   `cuenta_id` int,
   `descFechaVenc` date,
-  `descPorc` int not null,
+  `descPorc` int not null
 );
 
 CREATE TABLE `director` (
@@ -114,7 +114,7 @@ CREATE TABLE `dispositivo` (
   `dispID` int auto_increment,
   `dispNombre` varchar(60),
   `dispTipo` varchar(20),
-  PRIMARY KEY (`dispID`),
+  PRIMARY KEY (`dispID`)
 );
 
 CREATE TABLE `galeria` (
@@ -133,8 +133,8 @@ CREATE TABLE `heroeVillanoCivil` (
 );
 
 CREATE TABLE `heroeVillanoEnfrentados` (
-  `persHeroe_id` int,
-  `persVillano_id` int,
+ `persHeroeID` int,
+  `persVillanoID` int,
   PRIMARY KEY (`persHeroeID`,`persVillanoID`)
 );
 
@@ -222,21 +222,11 @@ CREATE TABLE `medio` (
   PRIMARY KEY (`medID`)
 );
 
-CREATE TABLE `nacionalidad` (
-  `nacionalidadID` int auto_increment,
-  `nacionalidadNombre` varchar(60),
-  `nacionalidadLugar` int,
-  PRIMARY KEY (`nacionalidadID`)
-);
-
 CREATE TABLE `miLista` (
-  `usuEmail_id` varchar(60),
-  `perfil_id` int,
-  `med_id` int,
-  KEY `PK FK` (`usuEmail`, `perfilID`, `medID`),
-	PRIMARY KEY(`usuEmail`),
-  PRIMARY KEY(`perfilID`),
-  PRIMARY KEY(`medID`)
+  `usuEmail` varchar(60),
+  `perfilID` int,
+ `medID` int,
+  PRIMARY KEY (`usuEmail`, `perfilID`, `medID`)
 );
 
 CREATE TABLE `objeto` (
@@ -245,7 +235,7 @@ CREATE TABLE `objeto` (
   `objetoMaterialFabricacion` varchar(60),
   `objetoTipoFK` int,
   `objetoDescripcion` varchar(60),
-  PRIMARY KEY (`objetoID`),
+  PRIMARY KEY (`objetoID`)
 );
 
 CREATE TABLE `ocupacion` (
@@ -295,11 +285,11 @@ CREATE TABLE `perMed` (
 
 CREATE TABLE `perfil` (
   `usuEmail_id` varchar(60),
-  `perfilID` int auto_increment,
+  `perfilID` int,
   `perfilNombre` varchar(60),
   `perfilIdiomaPref` varchar(60),
   `perfilEmail` varchar(60),
-  PRIMARY KEY (`perfilID`)
+  PRIMARY KEY (`usuEmail_id`,`perfilID`)
 );
 
 CREATE TABLE `persCivil` (
@@ -312,14 +302,6 @@ CREATE TABLE `persCivil` (
 CREATE TABLE `persCreador` (
   `personajeID_fk` int,
   `creadorID_fk` int
-);
-
-CREATE TABLE `persHeroe` (
-  `persHeroeID` int auto_increment,
-  `superHeroeNombre` varchar(60),
-  `superHeroeLogoTipo` tinyblob,
-  `superHeroeNombreArchienemigo` int,
-  PRIMARY KEY (`persHeroeID`)
 );
 
 CREATE TABLE `persNacion` (
@@ -335,13 +317,13 @@ CREATE TABLE `persObjeto` (
 
 CREATE TABLE `persOcupacion` (
   `personaje_id` int,
-  `ocupacion_id` int
+  `ocupacion_id` int,
   primary key (`personaje_id`, `ocupacion_id`)
 );
 
 CREATE TABLE `persPoder` (
-  `personaje_id` int,
-  `poder_id` int,
+ `personajeID` int,
+ `poderID` int,
   `obtencionPoder` varchar(20),
   `personajeHerencia` int,
   PRIMARY KEY(`personajeID`, `poderID`),
@@ -355,6 +337,15 @@ CREATE TABLE `persVillano` (
 	`id_personaje`int not null,
   PRIMARY KEY (`persVillanoID`)
 );
+
+
+CREATE TABLE `persHeroe` (
+  `persHeroeID` int auto_increment,
+  `superHeroeNombre` varchar(60),
+  `superHeroeLogoTipo` BLOB,
+  PRIMARY KEY (`persHeroeID`)
+);
+
 
 CREATE TABLE `personaje` (
   `personajeID` int auto_increment,
@@ -372,8 +363,8 @@ CREATE TABLE `personaje` (
   `personajeVillano` int,
   `personajeCivil` int,
   PRIMARY KEY (`personajeID`),
-  CONSTRAINT CHK_GEN_PERS CHECK (`perGenero` IN( 'M','F' 'DESC', 'OTRO')),
-  CONSTRAINT CHK_MAR_PERS CHECK (`perGenero` IN('Soltero' , 'Soltera' , 'Casado',
+  CONSTRAINT CHK_GEN_PERS CHECK (`perGenero` IN('M','F','DESC', 'OTRO')),
+  CONSTRAINT CHK_MAR_edomarital CHECK (`perEdoMarital` IN('Soltero' , 'Soltera' , 'Casado',
   'Casada', 'Viudo' , 'Viuda' ,'Separado' , 'Separada' , 'Divorciado' , 'Divorciada'))
 );
 
@@ -400,10 +391,10 @@ CREATE TABLE `rating`(
 );
 
 CREATE TABLE `recomendacion` (
-  `med_id` int,
-  `perfil_id` int,
-  `usuEmail_id` varchar(60),
-   PRIMARY KEY (`med_id`,`perfil_id`,`usuEmail_id`)
+  `medID` int,
+  `perfilID` int,
+  `usuEmail` varchar(60),
+   PRIMARY KEY (`medID`,`perfilID`,`usuEmail`)
 );
 
 CREATE TABLE `sede` (
@@ -412,7 +403,7 @@ CREATE TABLE `sede` (
   `sedeNombre` varchar(60),
   `sedeTipoEdificacion` varchar(20),
   `sedeUbicacion` int,
-  PRIMARY KEY (`sedeID`),
+  PRIMARY KEY (`sedeID`)
 );
 
 CREATE TABLE `tarjeta` (
@@ -431,21 +422,21 @@ CREATE TABLE `tipoObjeto` (
 CREATE TABLE `trajeColor` (
   `persHeroe_id` int,
   `colorHEX_id` varchar(60),
-  `detalleTrajeColor` varchar(60),
+  `detalleTrajeColor` varchar(60)
 );
 
 CREATE TABLE `usuDisp` (
   `usuEmail_id` varchar(60),
   `disp_id` int,
-  `fechInic` timestamp,
-  `fechFin` timestamp,
+  `fechInic` date,
+  `fechFin` date,
   PRIMARY KEY (`fechInic`)
 );
 
 CREATE TABLE `usuTarj` (
   `usuEmail_id` varchar(60),
-  `tarjNum_id ` int,
-  `tarjUltDigitConf` int
+  `tarjNum_id` int,
+PRIMARY KEY (`usuEmail_id`,`tarjNum_id`)
 );
 
 CREATE TABLE `usuario` (
@@ -462,6 +453,9 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`usuEmail`)
 );
 
---persOcupacion no commpila
--- orgarnizacion
--- lugar
+CREATE TABLE `nacionalidad` (
+  `nacionalidadID` int auto_increment,
+  `nacionalidadNombre` varchar(60),
+  `nacionalidadLugar` int,
+  PRIMARY KEY (`nacionalidadID`)
+);
