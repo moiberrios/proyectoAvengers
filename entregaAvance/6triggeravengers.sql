@@ -1,3 +1,4 @@
+-- [ ] Pseudo codigo a mejorar
 CREATE TRIGGER tr_personaje_chk BEFORE INSERT OR UPDATE ON personaje
 FOR EACH ROW
 BEGIN

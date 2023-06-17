@@ -80,28 +80,27 @@ VALUES
 ('Lanzamiento de rayos', 'Habilidad de lanzar rayos de energía'),
 ('Armadura corporal', 'Habilidad de crear una armadura protectora alrededor del cuerpo');
 
-INSERT INTO tipoObjeto (tipoObjetoNombre)
-VALUES 
-('Mjonir'),
-('soejf'),
-('jsejf'),
-('jsojef'),
-('jsejof'),
-('soeofje'),
-('sjeoef'),
-('sjof'),
-('sief'),
-('seojf'),
-('seojf'),
-('seoja'),
-('sejof'),
-('sjefo'),
-('efjo'),
-('eosf'),
-('eosjfo'),
-('sej2'),
-('isoe'),
-('3j3');
+INSERT INTO `tipoObjeto` (`tipoObjetoNombre`) VALUES
+('Mjolnir'),
+('Captain America\'s Shield'),
+('Iron Man Suit'),
+('Infinity Gauntlet'),
+('Stormbreaker'),
+('Spider-Man\'s Web-Shooters'),
+('Hawkeye\'s Bow and Arrows'),
+('Black Widow\'s Widow\'s Bite'),
+('Ant-Man\'s Helmet'),
+('Wasp\'s Suit'),
+('Doctor Strange\'s Cloak of Levitation'),
+('Eye of Agamotto'),
+('Black Panther\'s Vibranium Suit'),
+('Groot\'s Body'),
+('Rocket\'s Laser Gun'),
+('Star-Lord\'s Element Gun'),
+('Gamora\'s Sword'),
+('Nebula\'s Bionic Arm'),
+('Drax the Destroyer\'s Knives'),
+('Mantis\'s Empathy');
 
 INSERT INTO objeto (objetoNombre, objetoMaterialFabricacion, objetoTipoFK, objetoDescripcion)
 VALUES 
@@ -126,30 +125,29 @@ VALUES
 ('Cetro de Loki', 'Oro', 16, 'Poderoso cetro mágico utilizado por el dios de la travesura Loki'),
 ('Llave espada', 'Metal', 17, 'Arma mágica utilizada por los portadores de la llave espada para luchar contra las fuerzas de la oscuridad');
 
-INSERT INTO persObjeto (personaje_id, objeto_id)
-VALUES 
+INSERT INTO `persObjeto` (`personaje_id`, `objeto_id`) VALUES
 (1, 1),
-(83, 2),
-(181, 3),
-(85, 4),
-(9, 5),
-(52, 6),
-(52, 7),
-(52, 8),
-(52, 9),
-(8, 10),
-(8, 11),
-(8, 12),
-(8, 13),
-(7, 14),
-(8, 15),
-(9, 16),
-(1, 17),
-(1, 18),
-(1, 19),
-(1, 20);
+(1, 2),
+(2, 2),
+(2, 3),
+(3, 3),
+(3, 4),
+(4, 1),
+(4, 2),
+(5, 1),
+(5, 4),
+(6, 5),
+(6, 6),
+(7, 6),
+(7, 7),
+(8, 7),
+(8, 8),
+(9, 8),
+(9, 9),
+(10, 9),
+(10, 10);
 
-INSERT INTO persPoder (personaje_id, poder_id, obtencionPoder, personajeHerencia)
+INSERT INTO persPoder (personajeID, poderID, obtencionPoder, personajeHerencia)
 VALUES 
 (1, 1, 'Natural', NULL),
 (1, 2, 'Artificial', NULL),
@@ -222,25 +220,25 @@ VALUES
 INSERT INTO orgMed (org_id, med_id, fecha, orgMedTipo, orgMedEdoFinal)
 VALUES 
 (1, 1, '2022-01-01', 'Protagonista', 'Protagonista'),
-(1, 1, '2022-01-01', 'Enemiga', 'Secundaria'),
-(1, 1, '2022-01-01', 'Secundaria', 'Secundaria'),
+(1, 1, '2022-01-02', 'Enemiga', 'Secundaria'),
+(1, 1, '2022-01-03', 'Secundaria', 'Secundaria'),
 (1, 2, '2022-03-15', 'Protagonista', 'Protagonista'),
-(1, 2, '2022-03-15', 'Enemiga', 'Enemiga'),
-(1, 2, '2022-03-15', 'Secundaria', 'Protagonista'),
+(1, 2, '2022-03-16', 'Enemiga', 'Enemiga'),
+(1, 2, '2022-03-17', 'Secundaria', 'Protagonista'),
 (2, 3, '2022-02-01', 'Protagonista', 'Protagonista'),
-(2, 3, '2022-02-01', 'Secundaria', 'Secundaria'),
+(2, 3, '2022-02-02', 'Secundaria', 'Secundaria'),
 (2, 4, '2022-04-20', 'Protagonista', 'Protagonista'),
-(2, 4, '2022-04-20', 'Enemiga', 'Protagonista'),
+(2, 4, '2022-04-21', 'Enemiga', 'Protagonista'),
 (3, 5, '2022-05-10', 'Protagonista', 'Protagonista'),
 (3, 6, '2022-06-01', 'Protagonista', 'Protagonista'),
-(3, 6, '2022-06-01', 'Enemiga', 'Enemiga'),
+(3, 6, '2022-06-02', 'Enemiga', 'Enemiga'),
 (4, 7, '2022-07-15', 'Protagonista', 'Protagonista'),
-(4, 7, '2022-07-15', 'Secundaria', 'Secundaria'),
+(4, 7, '2022-07-16', 'Secundaria', 'Secundaria'),
 (5, 8, '2022-08-20', 'Protagonista', 'Protagonista'),
-(5, 8, '2022-08-20', 'Enemiga', 'Enemiga'),
+(5, 8, '2022-08-21', 'Enemiga', 'Enemiga'),
 (6, 9, '2022-09-01', 'Protagonista', 'Protagonista'),
 (6, 10, '2022-10-10', 'Protagonista', 'Protagonista'),
-(6, 10, '2022-10-10', 'Enemiga', 'Enemiga');
+(6, 10, '2022-10-11', 'Enemiga', 'Enemiga');
 
 INSERT INTO cargo (cargoNombre) VALUES 
 ('Gerente general'),
@@ -310,14 +308,3 @@ VALUES
 ('name18', 0, 'type18', 18),
 ('name19', 1, 'type19', 19),
 ('name20', 0, 'type20', 20);
-
-create view personajes_peliculas_mas_vistas as 
-select * 
-from perMed pm in (select m.medID
-                    from medio m, rating r 
-                    where medPelicula is not NULL
-                    and m.medID = r.medID
-                    and r.medID IN (select medID
-                                        from rating
-                                        where ratingPuntaje = 5)
-);
