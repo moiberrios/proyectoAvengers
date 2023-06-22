@@ -371,7 +371,7 @@ CREATE TABLE `plataforma` (
 
 CREATE TABLE `poder` (
   `poderID` int auto_increment,
-  `poderNombre` varchar(60),
+  `poderNombre` varchar(60) not null,
   `poderDescripcion`  varchar(60),
   PRIMARY KEY (`poderID`)
 );
