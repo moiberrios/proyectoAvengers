@@ -328,8 +328,8 @@ CREATE TABLE `persPoder` (
 CREATE TABLE `persVillano` (
   `persVillanoID` int auto_increment,
   `persVillanoNombre` varchar(60),
-  `persVillanoObjetivo` varchar(60),
-	`id_personaje`int not null,
+  `persVillanoObjetivo` varchar(60)
+	-- `id_personaje`int not null,
   PRIMARY KEY (`persVillanoID`)
 );
 
