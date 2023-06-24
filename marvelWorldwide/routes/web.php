@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 
@@ -17,10 +18,15 @@ use App\Http\Controllers\UsuarioController;
 // Route::get('/', function () {
 //     return view('test');
 // });
-
-// Route::get('/', function () {
-//     return view('otraVista');
-// });
-
 // Route::resource('almacen/poder','PoderController');
-Route::get("/",[UsuarioController::class, "index"])->name("usuario.index");
+
+Route::get('/',[UsuarioController::class, "index"])->name("usuario.index");
+
+Route::get('/formulario', function () {
+    return View('FormularioUser');
+});
+
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    return "Cache is cleared";
+});

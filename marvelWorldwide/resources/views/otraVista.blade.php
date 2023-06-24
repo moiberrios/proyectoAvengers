@@ -11,7 +11,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">`usuEmail`</th>
+      <th scope="col">`usuEma11`</th>
       <th scope="col">`usuNombre1`</th>
       <th scope="col">`usuNombre2`</th>
       <th scope="col">`usuApell1`</th>
