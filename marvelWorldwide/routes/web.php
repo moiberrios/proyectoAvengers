@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-Route::get('/', function () {
-    return view('otraVista');
-});
+// Route::get('/', function () {
+//     return view('test');
+// });
 
-Route::resource('almacen/poder','PoderController');
+// Route::get('/', function () {
+//     return view('otraVista');
+// });
+
+// Route::resource('almacen/poder','PoderController');
+Route::get("/",[UsuarioController::class, "index"])->name("usuario.index");
