@@ -75,7 +75,8 @@ VALUES
 ('La Hermandad de Mutantes', 'Los mutantes son el futuro!', 1, 'Supervillanos', 'Establecer la supremacía mutante', 1964, 1, 1964),
 ('Los Cuatro Fantásticos', 'Unidos somos invencibles!', 1, 'Superhéroes', 'Explorar el universo y proteger a la Tierra de amenazas extraterrestres', 1961, 1, 1961),
 ('La Patrulla-X', 'Protegiendo un mundo que los odia!', 1, 'Superhéroes', 'Promover la coexistencia pacífica entre humanos y mutantes', 1963, 1, 1963),
-('Los Inhumanos', 'Unidos somos una fuerza imparable!', 1, 'Superhéroes', 'Proteger a los Inhumanos de amenazas externas', 1965, 1, 1965);
+('Los Inhumanos', 'Unidos somos una fuerza imparable!', 1, 'Superhéroes', 'Proteger a los Inhumanos de amenazas externas', 1965, 1, 1965),
+('Iluminatis', 'Proteger al mundo de amenazas sobrenaturales', 11, 'Legion de villanos por el bien del mundo', 'Mantener la paz y la seguridad mundial', 1965, 2, 1965);
 
 INSERT INTO poder (poderNombre, poderDescripcion)
 VALUES 
@@ -188,7 +189,8 @@ VALUES
 (10, 17, 'Natural', NULL),
 (10, 18, 'Natural', NULL),
 (10, 19, 'Artificial', NULL),
-(10, 20, 'Natural', NULL);
+(10, 20, 'Natural', NULL),
+(11, 1, 'Artificial', NULL);
 
 
 INSERT INTO medio (medTitulo, medFechEstreno, companniaCreadProdID, medSinopsis, medPelicula, medSerie, medVideojuego, medComic)
@@ -212,7 +214,8 @@ VALUES
 ('Final Fantasy VII', '1997-01-31', 17, 'El ex-soldado Cloud y un grupo de rebeldes se enfrentan a un poderoso conglomerado', NULL, NULL, 4, NULL),
 ('Stranger Things 2', '2017-10-27', 14, 'Los amigos enfrentan una nueva amenaza sobrenatural en el pueblo de Hawkins', NULL, 1, NULL, 15),
 ('The Witcher', '2019-12-20', 5, 'El cazador de monstruos Geralt de Rivia va en busca de su destino en un mundo de fantasía', 1, NULL, NULL, 16),
-('The Mandalorian', '2019-11-12', 18, 'Un cazarrecompensas protege a un misterioso infante en una galaxia muy lejana', NULL, 1, NULL, 17);
+('The Mandalorian', '2019-11-12', 18, 'Un cazarrecompensas protege a un misterioso infante en una galaxia muy lejana', NULL, 1, NULL, 17),
+('Captain America: Civil War', '2019-04-26', 1, 'Los Vengadores se pelean entre si', 21, NULL, NULL, 3);
 
 INSERT INTO perMed (med_id, perMedTipo, actorCI, perMedTipoInterpret)
 VALUES 
@@ -433,4 +436,60 @@ INSERT INTO `persVillano` (`persVillanoNombre`, `persVillanoObjetivo`, `id_perso
 ('Mad Hatter', 'Controlar la mente de Gotham City', 28),
 ('Harvey Two-Face', 'Venganza contra los que lo traicionaron', 29),
 ('Scarecrow', 'Aterrorizar a Gotham City', 30),
-('Riddler', 'Demostrar su inteligencia y habilidades', 31);;
+('Riddler', 'Demostrar su inteligencia y habilidades', 31);
+
+INSERT INTO `medSerie` (`medSerCreador`, `medSerTotEps`, `medSerCanalTrans`, `medSerTipo`)
+VALUES
+  (1, 10, 'Canal 1', 'Animado'),
+  (2, 20, 'Canal 2', 'Liveaction'),
+  (3, 15, 'Canal 3', 'Caricatura'),
+  (4, 12, 'Canal 1', 'Animado'),
+  (5, 18, 'Canal 2', 'Liveaction'),
+  (6, 11, 'Canal 3', 'Caricatura'),
+  (7, 9, 'Canal 1', 'Animado'),
+  (8, 25, 'Canal 2', 'Liveaction'),
+  (9, 13, 'Canal 3', 'Caricatura'),
+  (10, 16, 'Canal 1', 'Animado'),
+  (11, 22, 'Canal 2', 'Liveaction'),
+  (12, 14, 'Canal 3', 'Caricatura'),
+  (13, 17, 'Canal 1', 'Animado'),
+  (14, 21, 'Canal 2', 'Liveaction'),
+  (15, 19, 'Canal 3', 'Caricatura'),
+  (16, 8, 'Canal 1', 'Animado'),
+  (17, 23, 'Canal 2', 'Liveaction'),
+  (18, 26, 'Canal 3', 'Caricatura'),
+  (19, 7, 'Canal 1', 'Animado'),
+  (20, 24, 'Canal 2', 'Liveaction');
+
+
+INSERT INTO medio (medTitulo, medFechEstreno, companniaCreadProdID, medSinopsis, medPelicula, medSerie, medVideojuego, medComic)
+VALUES 
+('Wanda Vision', '2020-04-26', 1, 'Wanda ha hipnotizado a un pueblo para su favor, donde los vengadores defienden', NULL, 21, NULL, NULL);
+
+INSERT INTO `medSerie` (`medSerCreador`, `medSerTotEps`, `medSerCanalTrans`, `medSerTipo`)
+VALUES
+  (1, 20, 'Canal 10', 'Liveaction');
+
+INSERT INTO `medPelicula` (`medPelDirectorCI`, `medPelDuracion`, `medPelTipo`, `medPelCostProd`, `medPelGananc`, `medPelDistrib`)
+VALUES
+  (1, '01:30:00', 'Animada', 1000000.00, 2000000.00, 1),
+  (2, '02:10:00', 'Liveaction', 2000000.00, 4000000.00, 2),
+  (3, '01:50:00', 'Caricatura', 1500000.00, 3000000.00, 3),
+  (4, '01:40:00', 'Animada', 1200000.00, 2400000.00, 1),
+  (5, '02:20:00', 'Liveaction', 2500000.00, 5000000.00, 2),
+  (6, '01:45:00', 'Caricatura', 1800000.00, 3600000.00, 3),
+  (7, '01:55:00', 'Animada', 1300000.00, 2600000.00, 1),
+  (8, '02:30:00', 'Liveaction', 3000000.00, 6000000.00, 2),
+  (9, '02:05:00', 'Caricatura', 2200000.00, 4400000.00, 3),
+  (10, '01:50:00', 'Animada', 1500000.00, 3000000.00, 1),
+  (11, '02:40:00', 'Liveaction', 3500000.00, 7000000.00, 2),
+  (12, '02:15:00', 'Caricatura', 2000000.00, 4000000.00, 3),
+  (13, '02:00:00', 'Animada', 1400000.00, 2800000.00, 1),
+  (14, '02:50:00', 'Liveaction', 4000000.00, 8000000.00, 2),
+  (15, '02:10:00', 'Caricatura', 2300000.00, 4600000.00, 3),
+  (16, '01:45:00', 'Animada', 1100000.00, 2200000.00, 1),
+  (17, '02:20:00', 'Liveaction', 2700000.00, 5400000.00, 2),
+  (18, '02:25:00', 'Caricatura', 2400000.00, 4800000.00, 3),
+  (19, '02:15:00', 'Animada', 1600000.00, 3200000.00, 1),
+  (20, '02:30:00', 'Liveaction', 3200000.00, 6400000.00, 2),
+  (1, '02:45:00', 'Animada', 1000000.00, 3000000.00, 1);

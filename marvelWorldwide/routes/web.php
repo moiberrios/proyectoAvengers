@@ -26,6 +26,10 @@ Route::get('/formulario', function () {
     return View('FormularioUser');
 });
 
+Route::get('/create', function () {
+    return View('create');
+});
+
 Route::get('/clear-cache', function() {
     Artisan::call('cache:clear');
     return "Cache is cleared";

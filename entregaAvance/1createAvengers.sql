@@ -177,7 +177,7 @@ CREATE TABLE `medPelicula` (
   `medPelGananc` numeric(10,2),
   `medPelDistrib` int,
   PRIMARY KEY (`medPelID`),
-	CONSTRAINT CHK_MED_PEL_TIPO CHECK(`medPelTipo`IN('Animada' , 'Liveaction' , ' Caricatura'))
+	CONSTRAINT CHK_MED_PEL_TIPO CHECK(`medPelTipo`IN('Animada' , 'Liveaction' , 'Caricatura'))
 );
 
 CREATE TABLE `medSerie` (

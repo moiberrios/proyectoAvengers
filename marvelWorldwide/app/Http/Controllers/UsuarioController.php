@@ -12,12 +12,7 @@ class UsuarioController extends Controller
         public function index() {
             $datos=  DB::select("select * from usuario");
             return View("otraVista")->with("datos",$datos);
-            // $data= [
-            //     'name' => 'moises',
-            //     'age' => 'edad'
-            // ];
-            // // return View::make('test',['datos' => 'pepe']);
-            // return View("test")->with("data",$data);
+            $otraCosa = DB::('INSERT INTO usuario (usuEmail, usuNombre1, usuNombre2, usuApell1, usuApell2, usuFechNac, usuPassword, usuUsername, usuPais, usuCiudad) VALUES, (?,?,?,?,?,?,?,?,?,?)',['user1@example.com', 'John', '', 'Doe', '', '1990-01-01', 'password1', 'johndoe', 1, 1']);
         }
             
         // public function register(Request $request) {
